@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="students">الطلاب</string>
+    <string name="my_name">Esraa Fathy</string>
+    <string name="my_email">esraa.fathy225@gmail.com</string>
+    <string name="search">بحث</string>
+    <string name="profile">الحساب</string>
+    <string name="settings">الاعدادات</string>
+    <string name="home">الرئيسية</string>
+    <string name="gallery">معرض الصور</string>
+    <string name="slideshow">عرض الصور</string>
+    <string name="profile_clicked">تم اختيار الحساب</string>
+    <string name="search_clicked">تم اختيار البحث</string>
+    <string name="settings_clicked">تم اختيار الاعدادات</string>
+    <string name="home_clicked">تم اختيار الرئيسية</string>
+    <string name="gallery_clicked">تم اختيار معرض الصور</string>
+    <string name="slideshow_clicked">تم اختيار عرض الصور</string>
+    <string name="change_language">تغيير اللغة</string>
+    <string name="dismiss">الغاء</string>
+    <string name="user_added">تم اضافة الطالب بنجاح</string>
+
+</resources>

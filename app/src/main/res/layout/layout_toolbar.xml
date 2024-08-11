@@ -16,6 +16,7 @@
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:paddingTop="@dimen/padding_20"
             app:title="@string/students"
             android:id="@+id/material_toolbar"
             app:titleCentered="true"

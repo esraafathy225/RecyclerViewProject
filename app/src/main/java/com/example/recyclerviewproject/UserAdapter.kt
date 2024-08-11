@@ -4,10 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.recyclerviewproject.R
 
-class UserAdapter(val data: List<User>) : RecyclerView.Adapter<UserAdapter.MyViewHolder>() {
+class UserAdapter(val data: List<User>)
+    : ListAdapter<User,UserAdapter.MyViewHolder>(UserItemDiffCallback()) {
 
     class MyViewHolder(val row: View) : RecyclerView.ViewHolder(row) {
         val tvName = row.findViewById<TextView>(R.id.tv_name)
@@ -29,4 +32,15 @@ class UserAdapter(val data: List<User>) : RecyclerView.Adapter<UserAdapter.MyVie
         holder.tvName.text = data.get(position).name
         holder.tvEmail.text = data.get(position).email
     }
+}
+
+class UserItemDiffCallback: DiffUtil.ItemCallback<User>() {
+    override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
+        return oldItem == newItem
+    }
+
+    override fun areContentsTheSame(oldItem: User, newItem: User): Boolean {
+        return oldItem == newItem
+    }
+
 }

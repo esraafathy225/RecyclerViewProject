@@ -4,48 +4,67 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="name"
             type="String" />
-
     </data>
-
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:openDrawer="start">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <include layout="@layout/layout_toolbar"
-            android:id="@+id/toolbar"></include>
-
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:id="@+id/rv_users"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"></androidx.recyclerview.widget.RecyclerView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/coordinator_layout">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <include layout="@layout/layout_toolbar"
+                    android:id="@+id/toolbar"></include>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:id="@+id/rv_users"
+                    app:layout_constraintTop_toBottomOf="@id/toolbar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/bottom_navigation"></androidx.recyclerview.widget.RecyclerView>
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_navigation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:menu="@menu/bottom_navigation_menu"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/white"
+                    app:itemIconTint="@drawable/bottom_nav_selector"
+                    app:itemTextColor="@drawable/bottom_nav_selector"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="@dimen/margin_16"
+                android:layout_marginBottom="75dp"
+                app:backgroundTint="@color/purple"
+                app:srcCompat="@drawable/plus"/>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:menu="@menu/drawer_menu"
-            app:headerLayout="@layout/header_layout"
             android:layout_gravity="start"
+            app:menu="@menu/drawer_menu"
             app:itemIconTint="@color/purple"
-            android:id="@+id/navigationView">
-        </com.google.android.material.navigation.NavigationView>
+            app:headerLayout="@layout/header_layout"
+            android:background="@color/white"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
-
 </layout>

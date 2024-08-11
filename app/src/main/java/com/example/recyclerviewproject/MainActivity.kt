@@ -19,6 +19,9 @@ import com.example.myapplication.User
 import com.example.myapplication.UserAdapter
 import com.example.recyclerviewproject.databinding.ActivityMainBinding
 import com.example.recyclerviewproject.ui.theme.RecyclerViewProjectTheme
+import com.google.android.material.snackbar.Snackbar
+import java.util.stream.IntStream.range
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view: View = binding.root
         setContentView(view)
+
 
 
         //binding.name="Hiii"
@@ -50,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
 
        val userAdapter = UserAdapter(users)
-       // binding.rvUsers.layoutManager=LinearLayoutManager(this)
+        binding.rvUsers.layoutManager=LinearLayoutManager(this)
         binding.rvUsers.adapter=userAdapter
 
         binding.toolbar.materialToolbar.setOnMenuItemClickListener {
@@ -100,5 +104,39 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.bottomNavigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> {
+                    Toast.makeText(this, R.string.home_clicked, Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.profile -> {
+                    Toast.makeText(this, R.string.profile_clicked, Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                R.id.settings -> {
+                    Toast.makeText(this, R.string.settings_clicked, Toast.LENGTH_SHORT).show()
+                    true
+                }
+
+                else -> false
+            }
+        }
+
+
+        binding.floatingActionButton.setOnClickListener {
+            // showCustomDialog()
+
+            Snackbar.make(binding.coordinatorLayout, R.string.user_added, Snackbar.LENGTH_LONG)
+                .setAction(R.string.dismiss) {
+                    // Responds to click on the action
+                }
+                .show()
+
+        }
     }
+
+
 }
