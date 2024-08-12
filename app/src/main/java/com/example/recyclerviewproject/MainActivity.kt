@@ -1,5 +1,9 @@
 package com.example.recyclerviewproject
 
+import android.content.Context
+import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -20,6 +24,7 @@ import com.example.myapplication.UserAdapter
 import com.example.recyclerviewproject.databinding.ActivityMainBinding
 import com.example.recyclerviewproject.ui.theme.RecyclerViewProjectTheme
 import com.google.android.material.snackbar.Snackbar
+import java.util.Locale
 import java.util.stream.IntStream.range
 
 class MainActivity : AppCompatActivity() {
@@ -39,16 +44,19 @@ class MainActivity : AppCompatActivity() {
 
 
         val users = mutableListOf<User>(
-            User("Ahmed Mohamed","Ahmed@gmail.com"),
-            User("Mahmoud Mohamed","Mahmoud@gmail.com"),
-            User("Mona Ahmed","Mona@gmail.com"),
-            User("Menna Ali","Menna@gmail.com"),
-            User("Youssef Mohamed","Youssef@gmail.com"),
-            User("Ahmed Mohamed","Ahmed@gmail.com"),
-            User("Mahmoud Ahmed","Mahmoud@gmail.com"),
-            User("Yasmine Ahmed","Mona@gmail.com"),
-            User("Mohamed Ali","Menna@gmail.com"),
-            User("Farida Mohamed","Youssef@gmail.com")
+            User("Group1","",1),
+            User("Ahmed Mohamed","Ahmed@gmail.com",2),
+            User("Mahmoud Mohamed","Mahmoud@gmail.com",2),
+            User("Mona Ahmed","Mona@gmail.com",2),
+            User("Group2","",1),
+            User("Menna Ali","Menna@gmail.com",2),
+            User("Youssef Mohamed","Youssef@gmail.com",2),
+            User("Ahmed Mohamed","Ahmed@gmail.com",2),
+            User("Group3","",1),
+            User("Mahmoud Ahmed","Mahmoud@gmail.com",2),
+            User("Yasmine Ahmed","Mona@gmail.com",2),
+            User("Mohamed Ali","Menna@gmail.com",2),
+            User("Farida Mohamed","Youssef@gmail.com",2)
         )
 
 
@@ -69,6 +77,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.settings -> {
                     Toast.makeText(this,R.string.settings_clicked, Toast.LENGTH_SHORT).show()
+                    true
+                }
+                R.id.change_language -> {
+                    updateLocale(this,"ar")
                     true
                 }
                 else -> false
@@ -100,6 +112,7 @@ class MainActivity : AppCompatActivity() {
                     true
                 }
 
+
                 else -> false
             }
         }
@@ -127,7 +140,6 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.floatingActionButton.setOnClickListener {
-            // showCustomDialog()
 
             Snackbar.make(binding.coordinatorLayout, R.string.user_added, Snackbar.LENGTH_LONG)
                 .setAction(R.string.dismiss) {
@@ -136,6 +148,37 @@ class MainActivity : AppCompatActivity() {
                 .show()
 
         }
+    }
+
+
+    fun updateLocale(context: Context, languageCode: String) {
+
+        // locale  ar  direction
+
+        val locale = Locale(languageCode)
+        Locale.setDefault(locale)
+        val config = Configuration()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            config.setLocale(locale)
+            context.createConfigurationContext(config)
+        } else {
+            config.locale = locale
+            context.resources.updateConfiguration(config, context.resources.displayMetrics)
+        }
+
+        // Update layout direction
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            config.setLayoutDirection(locale)
+        }
+
+        context.resources.updateConfiguration(config, context.resources.displayMetrics)
+
+        //restart activity
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 

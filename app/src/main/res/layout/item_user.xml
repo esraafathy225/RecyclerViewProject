@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="user"
+            type="com.example.myapplication.User" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -33,7 +40,8 @@
                 android:layout_marginTop="@dimen/margin_30"
                 style="@style/DescriptionStyle"
                 app:layout_constraintStart_toEndOf="@id/iv_user"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="@{user.name}"/>
 
             <TextView
                 android:id="@+id/tv_email"
@@ -43,8 +51,10 @@
                 app:layout_constraintStart_toStartOf="@id/tv_name"
                 android:layout_marginBottom="@dimen/margin_10"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_name" />
+                app:layout_constraintTop_toBottomOf="@id/tv_name"
+                android:text="@{user.email}"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+</layout>
