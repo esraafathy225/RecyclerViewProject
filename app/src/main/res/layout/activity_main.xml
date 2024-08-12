@@ -30,6 +30,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:id="@+id/rv_users"
+                    tools:listitem="@layout/item_user"
                     app:layout_constraintTop_toBottomOf="@id/toolbar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintBottom_toTopOf="@id/bottom_navigation"></androidx.recyclerview.widget.RecyclerView>
